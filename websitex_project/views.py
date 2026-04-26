@@ -4,7 +4,8 @@ from .models import Person
 from django.middleware.csrf import get_token
 
 def home(request):
-    return render(request, "home.html")
+    persons = Person.objects.all()
+    return render(request, "home.html", {"persons": persons})
 
 def test(request):
     html = "<p>worked</p>"
