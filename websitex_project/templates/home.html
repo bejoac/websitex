@@ -4,14 +4,17 @@
     <script src="https://unpkg.com/htmx.org@1.9.10"></script>
 </head>
 <body>
-    <form>
+    <form hx-post="/add_user/" hx-swap="outerHTML">
         {% csrf_token %}
-        <button hx-post="/test/" hx-swap="outerHTML">Submit</button>
+        <input type="text" name="first_name">
+        <input type="text" name="last_name">
+        <input type="email" name="email">
+        <button>Submit</button>
     </form>
-        <ul>
+    <ul>
         {% for person in persons %}
-            <li>{{ person.first_name }} {{ person.last_name }}</li>
+            <li>{{ person.first_name }} {{ person.last_name }} {{ person.email }}</li>
         {% endfor %}
-        </ul>
+    </ul>
 </body>
 </html>
