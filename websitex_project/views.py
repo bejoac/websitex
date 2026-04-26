@@ -1,21 +1,11 @@
 from django.http import HttpResponse
+from django.shortcuts import render
+from .models import Person
+from django.middleware.csrf import get_token
 
 def home(request):
-    html = """
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <script src="https://unpkg.com/htmx.org@1.9.10"></script>
-        </head>
-        <body>
-            <button hx-get="/test/" hx-swap="outerHTML">
-            Click Me
-            </button>
-        </body>
-        </html>
-    """
-    return HttpResponse(html)
+    return render(request, "home.html")
 
 def test(request):
-    html = "<p>Hello World my friend</p>"
+    html = "<p>worked</p>"
     return HttpResponse(html)

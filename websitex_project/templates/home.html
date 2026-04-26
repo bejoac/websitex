@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+</head>
+<body>
+    <form>
+        {% csrf_token %}
+        <button hx-post="/test/" hx-swap="outerHTML">Submit</button>
+    </form>
+</body>
+</html>
