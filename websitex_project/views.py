@@ -8,16 +8,13 @@ def home(request):
     return render(request, "home.html", {"persons": persons})
 
 def add_user(request):
-    email = request.POST.get("email")
     first_name = request.POST.get("first_name")
     last_name = request.POST.get("last_name")
-    print(email)
-
-    if not email: # TODO: Shouldn't be possible to Submit without Email
-        return HttpResponse("<p>Please specify E-mail</p>")
+    email = request.POST.get("email")
     
     if Person.objects.filter(email=email).exists():
-        return HttpResponse("<p>User with specified Mail already exists!</p>")
+        context = {"first_name": first_name, "last_name": last_name, "email": email, "mail_exists": True}
+        return render(request, "form.html", context)
 
     Person.objects.create(first_name=first_name, last_name=last_name, email=email) # Does this throw an error?
 
