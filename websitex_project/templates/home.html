@@ -5,11 +5,7 @@
 </head>
 <body>
     {% include "form.html" %}
-    <ul>
-        {% for person in persons %}
-            <li>{{ person.first_name }} {{ person.last_name }} {{ person.email }}</li>
-        {% endfor %}
-    </ul>
+    {% include "listing_persons.html" %}
 </body>
 </html>
 

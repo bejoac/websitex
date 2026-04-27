@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Person
 from django.middleware.csrf import get_token
 
@@ -16,6 +16,12 @@ def add_user(request):
         context = {"first_name": first_name, "last_name": last_name, "email": email, "mail_exists": True}
         return render(request, "form.html", context)
 
-    Person.objects.create(first_name=first_name, last_name=last_name, email=email) # Does this throw an error?
+    Person.objects.create(first_name=first_name, last_name=last_name, email=email)
+    response = render(request, "form.html")
+    response["HX-Trigger"] = "personAdded"
 
-    return HttpResponse("<p>Worked!</p>")
+    return response
+
+def get_users(request):
+    persons = Person.objects.all()
+    return render(request, "listing_persons.html", {"persons": persons})
