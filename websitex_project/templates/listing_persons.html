@@ -1,5 +1,5 @@
-<ul hx-get="/get_users/" hx-swap="outerHTML" hx-trigger="personAdded from:body">
+<ul id="listing_persons">
   {% for person in persons %}
-    <li>{{ person.first_name }} {{ person.last_name }}</li>
+    <li>Name: {{ person.first_name }} {{ person.last_name }}</li>
   {% endfor %}
 </ul>
