@@ -1,2 +1,11 @@
-
-<span id="listing_persons" hx-swap-oob="afterbegin"> Name: {{ first_name }} {{ last_name}} </span>
+<div hx-swap-oob="beforeend:#listing_persons">
+  <p id="contact{{ person.id }}">
+    Name: {{ person.first_name }} {{ person.last_name }}
+    <button 
+      hx-delete="/delete_user/{{ person.id }}/"
+      hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+      hx-target="#contact{{ person.id }}">
+      🗑️
+    </button>
+  </p>
+</div>

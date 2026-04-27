@@ -18,10 +18,10 @@ def add_user(request):
         context = {"first_name": first_name, "last_name": last_name, "email": email, "mail_exists": True}
         return render(request, "form.html", context)
 
-    Person.objects.create(first_name=first_name, last_name=last_name, email=email)
+    person = Person.objects.create(first_name=first_name, last_name=last_name, email=email)
 
     form_html = render_to_string("form.html", {}, request=request)
-    contact_html = render_to_string("oob_contact.html", {"first_name": first_name, "last_name": last_name}, request=request)
+    contact_html = render_to_string("oob_contact.html", {"person": person}, request=request)
 
     return HttpResponse(form_html + contact_html)
 
@@ -30,5 +30,6 @@ def get_users(request):
     return render(request, "listing_persons.html", {"persons": persons})
 
 def delete_user(request, id):
-    print(id)
+    person_to_delete = Person.objects.filter(id=id)
+    person_to_delete.delete()
     return HttpResponse("")

@@ -1,6 +1,5 @@
 
-<form hx-post="/add_user/">
-    {% csrf_token %}
+<form hx-post="/add_user/" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
     <input type="text" name="first_name" value="{{ first_name }}" required>
     <input type="text" name="last_name" value="{{ last_name }}" required>
     <input type="email" name="email" value="{{ email }}" required>
