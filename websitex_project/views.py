@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .models import Person
 from django.middleware.csrf import get_token
-
+import time
 from django.template.loader import render_to_string
 
 def home(request):
@@ -25,11 +25,8 @@ def add_user(request):
 
     return HttpResponse(form_html + contact_html)
 
-def get_users(request):
-    persons = Person.objects.all()
-    return render(request, "listing_persons.html", {"persons": persons})
-
 def delete_user(request, id):
     person_to_delete = Person.objects.filter(id=id)
     person_to_delete.delete()
+    time.sleep(5)
     return HttpResponse("")

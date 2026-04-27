@@ -1,0 +1,18 @@
+.contact {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+
+.htmx-indicator {
+    opacity: 0;
+    transition: opacity 200ms ease-in;
+}
+
+/* Case 1: the indicator IS the element receiving htmx-request */
+.htmx-request.htmx-indicator { opacity: 1; }
+
+/* Case 2: the indicator is a CHILD of the element receiving htmx-request */
+.htmx-request .htmx-indicator { opacity: 1; }

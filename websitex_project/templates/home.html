@@ -1,10 +1,12 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
-<head>
-    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
-</head>
-<body>
-    {% include "form.html" %}
-    {% include "listing_persons.html" %}
-</body>
+    <head>
+        <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+        <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    </head>
+    <body>
+        {% include "form.html" %}
+        {% include "listing_persons.html" %}
+    </body>
 </html>
