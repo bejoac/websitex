@@ -1,16 +1,4 @@
 {% load static %}
 <div hx-swap-oob="beforeend:#listing_persons">
-  <p class="contact" id="contact{{ person.id }}">
-    Name: {{ person.first_name }} {{ person.last_name }}
-    <button 
-      hx-delete="/delete_user/{{ person.id }}/"
-      hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
-      hx-target="#contact{{ person.id }}"
-      hx-indicator="#ci-{{ person.id }}">
-      🗑️
-    </button>
-    <div id="ci-{{ person.id }}" class="htmx-indicator">
-      <img src="{% static 'images/spinner.svg' %}">
-    </div>
-  </p>
+  {% include "contact.html" %}
 </div>

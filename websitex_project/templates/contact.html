@@ -5,11 +5,12 @@
     hx-delete="/delete_user/{{ person.id }}/"
     hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
     hx-target='#contact{{ person.id }}'
+    hx-swap="outerHTML"
     hx-indicator="#ci-{{ person.id }}"
     >
     🗑️
   </button>
-  <div id="ci-{{ person.id }}" class="htmx-indicator">
+  <span id="ci-{{ person.id }}" class="htmx-indicator">
     <img src="{% static 'images/spinner.svg' %}">
-  </div>
+  </span>
 </p>
