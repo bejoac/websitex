@@ -28,3 +28,7 @@ def add_user(request):
 def get_users(request):
     persons = Person.objects.all()
     return render(request, "listing_persons.html", {"persons": persons})
+
+def delete_user(request, id):
+    print(id)
+    return HttpResponse("")

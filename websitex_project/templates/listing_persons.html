@@ -1,5 +1,5 @@
-<ul id="listing_persons">
+<div id="listing_persons">
   {% for person in persons %}
-    <li>Name: {{ person.first_name }} {{ person.last_name }}</li>
+    {% include "contact.html" %}
   {% endfor %}
-</ul>
+</div>
