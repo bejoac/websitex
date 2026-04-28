@@ -70,4 +70,6 @@ def get_register_form(request):
 @login_required(login_url="/")
 def logout_user(request):
     logout(request)
-    return render(request, "home.html")
+    reponse = HttpResponse()
+    reponse["HX-Redirect"] = "/"
+    return reponse
