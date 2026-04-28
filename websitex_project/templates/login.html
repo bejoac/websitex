@@ -1,8 +1,0 @@
-{% load static %}
-<form class="login-form">
-  Username: <input name="username" type="text" required></input>
-  Password: <input name="password" type="password" required></input>
-  <button hx-post="/login/" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>Confirm</button>
-</form>
-
-

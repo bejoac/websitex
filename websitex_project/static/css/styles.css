@@ -13,7 +13,8 @@
     transition: opacity 200ms ease-in;
 }
 
-.login-form {
+.login-user-form,
+.register-user-form {
     display: flex;
     flex-direction: column;
     width: 20vw;

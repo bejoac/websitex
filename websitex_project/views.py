@@ -6,6 +6,8 @@ import time
 from django.template.loader import render_to_string
 
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required, login_not_required
 
 def home(request):
     persons = Person.objects.all()
@@ -33,10 +35,33 @@ def delete_user(request, id):
     time.sleep(2)
     return HttpResponse("")
 
-def login(request):
+def register_user(request):
     username = request.POST.get("username")
     password = request.POST.get("password")
-    print(username)
-    user = User.objects.create_user(username=username, password=password)
 
-    return HttpResponse("Logged in!")
+    if User.objects.filter(username=username).exists():
+        return HttpResponse("Username already taken!", status=422)
+    
+    try:
+        user = User.objects.create_user(username=username, password=password)
+        login(request, user)
+        return HttpResponse("User registered and logged in!")
+    except Exception as e:
+        return HttpResponse(f"Failed: {str(e)}", status=500)
+
+def login_user(request):
+    username = request.POST.get("username")
+    password = request.POST.get("password")
+
+    user = authenticate(request, username=username, password=password)
+
+    if user:
+        login(request, user)
+        return HttpResponse("Logged in!")
+    else:
+        return HttpResponse("Failed to log in!")
+
+@login_required
+def logout_user(request):
+    logout(request)
+    return HttpResponse("Logged out!")
