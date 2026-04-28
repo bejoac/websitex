@@ -28,5 +28,5 @@ def add_user(request):
 def delete_user(request, id):
     person_to_delete = Person.objects.filter(id=id)
     person_to_delete.delete()
-    time.sleep(5)
+    time.sleep(2)
     return HttpResponse("")
