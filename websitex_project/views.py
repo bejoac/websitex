@@ -5,6 +5,8 @@ from django.middleware.csrf import get_token
 import time
 from django.template.loader import render_to_string
 
+from django.contrib.auth.models import User
+
 def home(request):
     persons = Person.objects.all()
     return render(request, "home.html", {"persons": persons})
@@ -30,3 +32,11 @@ def delete_user(request, id):
     person_to_delete.delete()
     time.sleep(2)
     return HttpResponse("")
+
+def login(request):
+    username = request.POST.get("username")
+    password = request.POST.get("password")
+    print(username)
+    user = User.objects.create_user(username=username, password=password)
+
+    return HttpResponse("Logged in!")
