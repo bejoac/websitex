@@ -1,0 +1,9 @@
+  <form>
+    New Entry: <input name="user_entry" required></input>
+    <button
+      hx-post="/add_entry"
+      hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+      >
+      Send
+    </button>
+  </form>

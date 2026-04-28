@@ -22,11 +22,12 @@ from . import views
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", views.home),
-    path("add_user/", views.add_user),
-    path("delete_user/<int:id>/", views.delete_user),
     path("login_user/", views.login_user),
     path("get_login_form/", views.get_login_form),
     path("get_register_form/", views.get_register_form),
+    path("user_space/", views.user_space),
     path("logout_user/", views.logout_user),
     path("register_user/", views.register_user),
+    path("get_entries", views.get_entries),
+    path("add_entry", views.add_entry),
 ]
