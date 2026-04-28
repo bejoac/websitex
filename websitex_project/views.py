@@ -57,11 +57,17 @@ def login_user(request):
 
     if user:
         login(request, user)
-        return HttpResponse("Logged in!")
+        return render(request, "home.html")
     else:
         return HttpResponse("Failed to log in!")
 
-@login_required
+def get_login_form(request):
+    return render(request, "login_user.html")
+
+def get_register_form(request):
+    return render(request, "register_user.html")
+
+@login_required(login_url="/")
 def logout_user(request):
     logout(request)
-    return HttpResponse("Logged out!")
+    return render(request, "home.html")

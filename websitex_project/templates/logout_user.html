@@ -3,8 +3,9 @@
     hx-post="logout_user/" 
     hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' 
     hx-target="#logout-user-container"
-    hx-swap="innerHTML"
+    hx-swap="outerHTML"
     >
   Logout
   </button>
+  <p>{{ request.user.username}}</p>
 </div>
