@@ -1,0 +1,19 @@
+{% load static %}
+<form id="register-user-form" class="login-user-form">
+  <h1>Register</h1>
+  Username: <input name="username" type="text" required></input>
+  Password: <input name="password" type="password" required></input>
+  <button
+    hx-post="/register_user/"
+    hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' 
+    hx-target="#register-user-form"
+    hx-swap="outerHTML">
+    Register
+  </button>
+  <button
+    hx-get="/get_login_form/"
+    hx-target="#register-user-form"
+    hx-swap="outerHTML">
+    Have an account?
+  </button>
+</form>

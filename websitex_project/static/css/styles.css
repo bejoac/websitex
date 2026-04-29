@@ -13,6 +13,13 @@
     transition: opacity 200ms ease-in;
 }
 
+.login-user-form,
+.register-user-form {
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
+}
+
 .htmx-request.htmx-indicator { opacity: 1; }
 
 .htmx-request .htmx-indicator { opacity: 1; }

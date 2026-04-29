@@ -1,32 +1,72 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from .models import Person
+from .models import Entry
 from django.middleware.csrf import get_token
-import time
 from django.template.loader import render_to_string
 
+from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required, login_not_required
+
 def home(request):
-    persons = Person.objects.all()
-    return render(request, "home.html", {"persons": persons})
+    return render(request, "home.html")
 
-def add_user(request):
-    first_name = request.POST.get("first_name")
-    last_name = request.POST.get("last_name")
-    email = request.POST.get("email")
+@login_required(login_url="/")
+def user_space(request):
+    entries = Entry.objects.filter(user=request.user)
+    return render(request, "user_space.html", {"entries": entries})
+
+
+def register_user(request):
+    username = request.POST.get("username")
+    password = request.POST.get("password")
+
+    if User.objects.filter(username=username).exists():
+        return HttpResponse("Username already taken!", status=422)
     
-    if Person.objects.filter(email=email).exists():
-        context = {"first_name": first_name, "last_name": last_name, "email": email, "mail_exists": True}
-        return render(request, "form.html", context)
+    try:
+        user = User.objects.create_user(username=username, password=password)
+        login(request, user)
+        return HttpResponse("User registered and logged in!")
+    except Exception as e:
+        return HttpResponse(f"Failed: {str(e)}", status=500)
+    
 
-    person = Person.objects.create(first_name=first_name, last_name=last_name, email=email)
+def login_user(request):
+    username = request.POST.get("username")
+    password = request.POST.get("password")
 
-    form_html = render_to_string("form.html", {}, request=request)
-    contact_html = render_to_string("oob_contact.html", {"person": person}, request=request)
+    user = authenticate(request, username=username, password=password)
 
-    return HttpResponse(form_html + contact_html)
+    if user:
+        login(request, user)
+        response = HttpResponse()
+        response["HX-Redirect"] = "/user_space/"
+        return response
+    else:
+        return HttpResponse("Failed to log in!")
+    
 
-def delete_user(request, id):
-    person_to_delete = Person.objects.filter(id=id)
-    person_to_delete.delete()
-    time.sleep(2)
-    return HttpResponse("")
+def get_login_form(request):
+    return render(request, "login_user.html")
+
+def get_register_form(request):
+    return render(request, "register_user.html")
+
+
+@login_required(login_url="/")
+def logout_user(request):
+    logout(request)
+    reponse = HttpResponse()
+    reponse["HX-Redirect"] = "/"
+    return reponse
+
+
+def get_entries(request):
+    pass
+
+
+def add_entry(request):
+    user_entry = request.POST.get("user_entry")
+    user_entry_object = Entry.objects.create(user=request.user, user_entry=user_entry)
+    return render(request, "oob_entry.html", {"entry": user_entry_object})
