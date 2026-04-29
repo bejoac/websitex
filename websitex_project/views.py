@@ -62,8 +62,10 @@ def logout_user(request):
     return reponse
 
 
-def get_entries(request):
-    pass
+def delete_entry(request, id):
+    entry_to_delete = Entry.objects.filter(user=request.user, id=id)
+    entry_to_delete.delete()
+    return HttpResponse("")
 
 
 def add_entry(request):

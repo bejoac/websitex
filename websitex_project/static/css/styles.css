@@ -23,3 +23,8 @@
 .htmx-request.htmx-indicator { opacity: 1; }
 
 .htmx-request .htmx-indicator { opacity: 1; }
+
+.entry-container {
+    display: flex;
+    flex-direction: row;
+}

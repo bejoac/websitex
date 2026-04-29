@@ -28,6 +28,6 @@ urlpatterns = [
     path("user_space/", views.user_space),
     path("logout_user/", views.logout_user),
     path("register_user/", views.register_user),
-    path("get_entries", views.get_entries),
     path("add_entry", views.add_entry),
+    path("delete_entry/<int:id>/", views.delete_entry),
 ]
