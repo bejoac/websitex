@@ -68,5 +68,5 @@ def get_entries(request):
 
 def add_entry(request):
     user_entry = request.POST.get("user_entry")
-    Entry.objects.create(user=request.user, user_entry=user_entry)
-    return HttpResponse("Send")
+    user_entry_object = Entry.objects.create(user=request.user, user_entry=user_entry)
+    return render(request, "oob_entry.html", {"entry": user_entry_object})

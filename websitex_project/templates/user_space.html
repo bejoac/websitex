@@ -9,9 +9,11 @@
     {% include "logout_user.html" %}
     <div id="user-space-container">
       <h1>Hello {{ request.user.username }}</h1>
-      {% for entry in entries %}
-        {% include "entry.html" %}
-      {% endfor %}
+      <div id="entries-container">
+        {% for entry in entries %}
+          {% include "entry.html" %}
+        {% endfor %}
+      </div>
       {% include "entry_form.html" %}
     </div>
   </body>
