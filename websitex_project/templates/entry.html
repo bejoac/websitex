@@ -1,6 +1,7 @@
 <div id="entry-container{{entry.id}}" class="entry-container">
   <span>{{ entry.user_entry }}</span> 
   <button 
+    class="delete-entry-button"
     hx-delete="/delete_entry/{{ entry.id }}/" 
     hx-target="#entry-container{{entry.id}}"
     hx-swap="outerHTML"
