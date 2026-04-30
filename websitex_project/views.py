@@ -62,6 +62,15 @@ def logout_user(request):
     return reponse
 
 
+@login_required(login_url="/")
+def delete_user(request):
+    user_to_delete = User.objects.filter(username=request.user)
+    user_to_delete.delete()
+    response = HttpResponse()
+    response["HX-Redirect"] = "/"
+    return response
+
+
 def delete_entry(request, id):
     entry_to_delete = Entry.objects.filter(user=request.user, id=id)
     entry_to_delete.delete()

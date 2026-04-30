@@ -27,6 +27,7 @@ urlpatterns = [
     path("get_register_form/", views.get_register_form),
     path("user_space/", views.user_space),
     path("logout_user/", views.logout_user),
+    path("delete_user/", views.delete_user),
     path("register_user/", views.register_user),
     path("add_entry", views.add_entry),
     path("delete_entry/<int:id>/", views.delete_entry),
