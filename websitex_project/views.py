@@ -1,12 +1,10 @@
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from .models import Entry
-from django.middleware.csrf import get_token
-from django.template.loader import render_to_string
 
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required, login_not_required
+from django.contrib.auth.decorators import login_required
 
 def home(request):
     return render(request, "home.html")
@@ -46,8 +44,8 @@ def login_user(request):
         response["HX-Redirect"] = "/user_space/"
         return response
     else:
-        return HttpResponse("Failed to log in!")
-    
+        error = "Failed to authenticate user"
+        return render(request, "login_user.html", context={"error": error}, status=422)
 
 def get_login_form(request):
     return render(request, "login_user.html")

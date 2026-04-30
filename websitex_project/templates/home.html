@@ -4,6 +4,16 @@
     <head>
         <script src="https://unpkg.com/htmx.org@1.9.10"></script>
         <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+        <script>
+            document.addEventListener("DOMContentLoaded", (event) => {
+                document.body.addEventListener("htmx:beforeSwap", function(evt) {
+                    if (evt.detail.xhr.status === 422) {
+                        evt.detail.shouldSwap = true;
+                        evt.detail.isError = false;
+                    };
+                });
+            });
+        </script>
     </head>
     <body>
         {% if request.user.is_authenticated %}

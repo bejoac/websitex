@@ -3,6 +3,9 @@
   <h1>Login</h1>
   Username: <input name="username" type="text" autocomplete="off" required></input>
   Password: <input name="password" type="password" autocomplete="off" required></input>
+  {% if error %}
+    <p style="color: red;">{{ error }}</p>
+  {% endif %}
   <button 
     hx-post="/login_user/" 
     hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' 
