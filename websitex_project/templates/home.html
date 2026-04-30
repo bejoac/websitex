@@ -7,7 +7,6 @@
     </head>
     <body>
         {% if request.user.is_authenticated %}
-            {% include "logout_user.html" %}
             {% include "user_space.html" %}
         {% else %}
             {% include "register_user.html" %}
