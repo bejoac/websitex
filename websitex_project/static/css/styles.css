@@ -5,6 +5,10 @@
     width: 20vw;
 }
 
+.delete-user-button:hover {
+    animation: pulse 0.8s infinite;
+}
+
 .entry-container {
     display: grid;
     grid-template-columns: auto auto;

@@ -1,6 +1,7 @@
 <button
   hx-delete="/delete_user/"
   hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
-  hx-confirm="This will delete the user and all of the associated data!">
+  hx-confirm="This will delete the user and all of the associated data!"
+  class="delete-user-button">
   Delete User
 </button>
