@@ -27,7 +27,9 @@ def register_user(request):
     try:
         user = User.objects.create_user(username=username, password=password)
         login(request, user)
-        return HttpResponse("User registered and logged in!")
+        response = HttpResponse()
+        response["HX-Redirect"] = "/user_space/"
+        return response
     except Exception as e:
         return HttpResponse(f"Failed: {str(e)}", status=500)
     
@@ -49,6 +51,7 @@ def login_user(request):
 
 def get_login_form(request):
     return render(request, "login_user.html")
+
 
 def get_register_form(request):
     return render(request, "register_user.html")

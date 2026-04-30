@@ -1,9 +1,12 @@
-  <form
-    hx-post="/add_entry"
-    hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
-    hx-swap="none">
-    New Entry: <input name="user_entry" autocomplete="off" required></input>
-    <button>
-      Send
-    </button>
-  </form>
+  <div class="entry-form-container">
+    <form
+      hx-post="/add_entry"
+      hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+      hx-swap="none"
+      class="entry-form">
+      New Entry: <input name="user_entry" autocomplete="off" required></input>
+      <button>
+        Send
+      </button>
+    </form>
+  </div>

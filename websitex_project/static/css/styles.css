@@ -1,18 +1,3 @@
-.contact {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 20px;
-}
-
-.htmx-indicator {
-    opacity: 0;
-    width: 10vw;
-    height: 2vh;
-    transition: opacity 200ms ease-in;
-}
-
 .login-user-form,
 .register-user-form {
     display: flex;
@@ -20,14 +5,13 @@
     width: 20vw;
 }
 
-.htmx-request.htmx-indicator { opacity: 1; }
-
-.htmx-request .htmx-indicator { opacity: 1; }
-
 .entry-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center; 
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 0.5rem;
+    justify-content: start;
+    align-content: start;
+    margin-bottom: 1rem;
 }
 
 .delete-entry-button {
@@ -37,10 +21,6 @@
 
     border: none;
     background-color: white;
-
-    display: flex;
-    align-items: center;
-    justify-content: center
 }
 
 .delete-entry-button:hover {
