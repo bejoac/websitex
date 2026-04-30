@@ -1,8 +1,8 @@
 {% load static %}
 <form id="register-user-form" class="login-user-form">
   <h1>Register</h1>
-  Username: <input name="username" type="text" required></input>
-  Password: <input name="password" type="password" required></input>
+  Username: <input name="username" type="text" autocomplete="off" required></input>
+  Password: <input name="password" type="password" autocomplete="off" required></input>
   <button
     hx-post="/register_user/"
     hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}' 
