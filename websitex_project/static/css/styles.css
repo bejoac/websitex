@@ -11,7 +11,7 @@
 
 .entry-container {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto auto auto;
     gap: 0.5rem;
     justify-content: start;
     align-content: start;
@@ -25,6 +25,11 @@
 
     border: none;
     background-color: white;
+}
+
+.edit-entry-button {
+    height: 2em;
+    width: 3em;
 }
 
 .delete-entry-button:hover {

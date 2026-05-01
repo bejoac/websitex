@@ -82,3 +82,11 @@ def add_entry(request):
     user_entry = request.POST.get("user_entry")
     user_entry_object = Entry.objects.create(user=request.user, user_entry=user_entry)
     return render(request, "oob_entry.html", {"entry": user_entry_object})
+
+
+def get_edit_form(request, id):
+    return render(request, "edit_entry.html", {"id": id})
+
+def edit_entry(request, id):
+    entry = Entry.objects.get(user=request.user, id=id)
+    return render(request, "entry.html", {"entry": entry})

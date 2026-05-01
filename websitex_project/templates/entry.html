@@ -1,11 +1,20 @@
-<div id="entry-container{{entry.id}}" class="entry-container">
-  <span>{{ entry.user_entry }}</span> 
+<div id="entry-container{{ entry.id }}" class="entry-container">
+  <span id="entry-space{{ entry.id }}">{{ entry.user_entry }}</span> 
   <button 
     class="delete-entry-button"
     hx-delete="/delete_entry/{{ entry.id }}/" 
-    hx-target="#entry-container{{entry.id}}"
+    hx-target="#entry-container{{ entry.id }}"
     hx-swap="outerHTML"
     hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
     🗑️
+  </button>
+  <button
+    class="edit-entry-button"
+    hx-put="/get_edit_form/{{ entry.id }}/"
+    hx-target="#entry-container{{ entry.id }}"
+    hx-swap="outerHTML"
+    hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
+    >
+    Edit
   </button>
 </div>

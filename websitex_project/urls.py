@@ -31,4 +31,6 @@ urlpatterns = [
     path("register_user/", views.register_user),
     path("add_entry", views.add_entry),
     path("delete_entry/<int:id>/", views.delete_entry),
+    path("get_edit_form/<int:id>/", views.get_edit_form),
+    path("user_space/edit_entry/<int:id>/", views.edit_entry),
 ]
