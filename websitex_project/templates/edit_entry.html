@@ -1,7 +1,7 @@
 <form id="entry-edit-form">
-  <input name="updated_entry" value="Test">
+  <input name="updated_entry" value="{{ entry.user_entry}}">
   <button
-    hx-put="edit_entry/{{ id }}/"
+    hx-post="edit_entry/{{ id }}/"
     hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'
     hx-target="#entry-edit-form"
     hx-swap="outerHTML"
