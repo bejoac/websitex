@@ -18,9 +18,6 @@ def user_space(request):
 def register_user(request):
     username = request.POST.get("username")
     password = request.POST.get("password")
-
-    if User.objects.filter(username=username).exists():
-        return HttpResponse("Username already taken!", status=422)
     
     try:
         user = User.objects.create_user(username=username, password=password)
@@ -35,6 +32,9 @@ def register_user(request):
 def login_user(request):
     username = request.POST.get("username")
     password = request.POST.get("password")
+
+    if not User.objects.filter(username=username).exists():
+        return HttpResponse("Username does not exist!", status=422)
 
     user = authenticate(request, username=username, password=password)
 
@@ -87,6 +87,7 @@ def add_entry(request):
 def get_edit_form(request, id):
     entry = Entry.objects.get(user=request.user, id=id)
     return render(request, "edit_entry.html", {"id": id, "entry": entry})
+
 
 def edit_entry(request, id):
     entry = Entry.objects.get(user=request.user, id=id)

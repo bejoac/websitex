@@ -1,23 +1,17 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-  <head>
-    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
-    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-  </head>
-  <body>
-    <nav>
-    {% include "logout_user.html" %}
-    {% include "delete_user.html" %}
-    </nav>
-    <div id="user-space-container">
-      <h1>Hello {{ request.user.username }}</h1>
-      <div id="entries-container">
-        {% for entry in entries %}
-          {% include "entry.html" %}
-        {% endfor %}
-      </div>
-      {% include "entry_form.html" %}
+{% extends "base.html" %}
+
+{% block content %}
+  <nav>
+  {% include "logout_user.html" %}
+  {% include "delete_user.html" %}
+  </nav>
+  <div id="user-space-container">
+    <h1>Hello {{ request.user.username }}</h1>
+    <div id="entries-container">
+      {% for entry in entries %}
+        {% include "entry.html" %}
+      {% endfor %}
     </div>
-  </body>
-</html>
+    {% include "entry_form.html" %}
+  </div>
+{% endblock %}
